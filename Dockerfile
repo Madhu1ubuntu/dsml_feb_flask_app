@@ -1,11 +1,11 @@
 FROM python:3.8-slim-buster
 
-WORKDIR /flask-docker
+WORKDIR /flask-loan-app
 
-RUN python3 -m pip install --upgrade pip
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
 
-COPY . .
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
+COPY . /flask-loan-app/
+
+CMD ["python", "-m", "flask","--app", "hello.py","run", "--host=0.0.0.0","--port=8000"]
